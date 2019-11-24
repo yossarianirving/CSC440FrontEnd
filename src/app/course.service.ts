@@ -23,7 +23,7 @@ export class CourseService {
         requirementSatisfaction: 'blah',
         credits: 3,
         yearTaken: 2019,
-        semseterTaken: 'Fall',
+        semesterTaken: 'Fall',
         finalGrade: ''
       }),
       new Course({
@@ -32,7 +32,7 @@ export class CourseService {
         requirementSatisfaction: 'bl',
         credits: 1,
         yearTaken: 2019,
-        semseterTaken: 'Fall',
+        semesterTaken: 'Fall',
         finalGrade: ''
       })
     ]

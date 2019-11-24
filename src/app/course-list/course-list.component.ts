@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CourseService } from '../course.service';
+import { Course } from '../course'
 
 @Component({
   selector: 'app-course-list',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseListComponent implements OnInit {
 
-  constructor() { }
+  courses: Course[]
+  displayedColumns = ["title", "credits", "yearTaken", "semesterTaken", 'finalGrade']
+  constructor(
+    private courseService: CourseService
+  ) { }
 
   ngOnInit() {
+    this.courseService.getCourses('in_progress').then(courses => {
+      this.courses = courses  
+    })
   }
 
 }

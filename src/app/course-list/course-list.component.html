@@ -1,1 +1,35 @@
 <p>course-list works!</p>
+<table mat-table [dataSource]='courses'>
+    <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> Title </th>
+        <td mat-cell *matCellDef="let course"> {{course.title}} </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="credits">
+        <th mat-header-cell *matHeaderCellDef> Hours </th>
+        <td mat-cell *matCellDef="let course"> {{course.credits}} </td>
+      </ng-container>
+    
+      <!-- Weight Column -->
+      <ng-container matColumnDef="yearTaken">
+        <th mat-header-cell *matHeaderCellDef> Year </th>
+        <td mat-cell *matCellDef="let course"> {{course.yearTaken}} </td>
+      </ng-container>
+    
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="semesterTaken">
+        <th mat-header-cell *matHeaderCellDef> Semester </th>
+        <td mat-cell *matCellDef="let course"> {{course.semesterTaken}} </td>
+      </ng-container>
+
+       <!-- Symbol Column -->
+       <ng-container matColumnDef="finalGrade">
+        <th mat-header-cell *matHeaderCellDef> Grade </th>
+        <td mat-cell *matCellDef="let course"> {{course.finalGrade}} </td>
+      </ng-container>
+  
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

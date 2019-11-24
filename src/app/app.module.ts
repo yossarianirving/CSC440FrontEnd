@@ -8,6 +8,7 @@ import {
   MatSidenavModule,
   MatToolbarModule,
   MatIconModule,
+  MatTableModule,
 } from '@angular/material';
 import { HomeComponent } from './home/home.component';
 import { CourseListComponent } from './course-list/course-list.component';
@@ -27,6 +28,7 @@ import { CourseInfoComponent } from './course-info/course-info.component'
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
