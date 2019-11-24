@@ -1,4 +1,3 @@
-<p>course-list works!</p>
 <table mat-table [dataSource]='courses'>
     <ng-container matColumnDef="title">
         <th mat-header-cell *matHeaderCellDef> Title </th>
@@ -33,3 +32,5 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
+<button mat-button [routerLink]="['/add_course']" routerLinkActive="router-link-active" >Add Class</button>

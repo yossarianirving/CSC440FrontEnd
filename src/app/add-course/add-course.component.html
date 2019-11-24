@@ -1,0 +1,43 @@
+<form [formGroup]="newClassForm" (ngSubmit)="onSubmit(newClassForm.value)">
+  <mat-form-field>
+    <input matInput placeholder="Title" id="title" name="title" formControlName="title">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput type="number" placeholder="Credit Hours" id="credits" name="credits" formControlName="credits">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="Final Grade" id="finalGrade" name="finalGrade" formControlName="finalGrade">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput [matDatepicker]="dp" placeholder="Year Taken" formControlName="yearTaken">
+    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+    <mat-datepicker #dp
+                    startView="multi-year"
+                    (yearSelected)="chosenYearHandler($event, dp)"
+                    panelClass="example-month-picker">
+    </mat-datepicker>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <mat-select placeholder="Semester" formControlName="semesterTaken">
+      <mat-option *ngFor="let semester of semesterOptions" value="{{ semester }}">{{ semester | titlecase }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <mat-select placeholder="Requirement" formControlName="requirementSatisfaction">
+      <mat-option *ngFor="let req of requirementTypes" value="{{ req }}">{{ req }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <mat-select placeholder="Status" formControlName="status">
+      <mat-option *ngFor="let stat of statusOptions" value="{{ stat }}">{{ stat | titlecase }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <button mat-button color="primary" type="submit">Submit</button>
+</form>

@@ -6,7 +6,8 @@ export class Course {
     credits: number;
     semesterTaken: string;
     yearTaken: string;
-    finalGrade: string
+    finalGrade: string;
+    status: string;
 
     constructor(json: Object) {
         this.id = json['id']
@@ -16,5 +17,6 @@ export class Course {
         this.semesterTaken = json['semesterTaken']
         this.yearTaken = json['yearTaken']
         this.finalGrade = json['finalGrade']
+        this.status = json['status'];
     }
 }

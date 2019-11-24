@@ -3,13 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { CourseListComponent } from './course-list/course-list.component';
 import { CourseInfoComponent } from './course-info/course-info.component'
+import { AddCourseComponent } from './add-course/add-course.component';
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'course', component: CourseListComponent},
+  { path: 'courses', component: CourseListComponent},
   { path: 'course/:courseId', component: CourseInfoComponent },
-  
+  { path: 'add_course', component: AddCourseComponent },
 ];
 
 @NgModule({
