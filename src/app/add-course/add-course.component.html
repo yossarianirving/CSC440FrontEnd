@@ -8,7 +8,9 @@
   </mat-form-field>
   <br>
   <mat-form-field>
-    <input matInput placeholder="Final Grade" id="finalGrade" name="finalGrade" formControlName="finalGrade">
+    <mat-select placeholder="Final Grade" id="finalGrade" name="finalGrade" formControlName="finalGrade">
+      <mat-option *ngFor="let grade of finalGradeOptions" value="{{ grade }}">{{ grade }}</mat-option>
+    </mat-select>
   </mat-form-field>
   <br>
   <mat-form-field>

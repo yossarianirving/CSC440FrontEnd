@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CourseService } from '../course.service';
 import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
@@ -54,6 +54,7 @@ export class AddCourseComponent implements OnInit {
     "Upper Division",
     "Free Elective"
   ];
+  finalGradeOptions = ['', 'A', 'B', 'C', 'D', 'F', 'I']
   constructor(
     private formBuilder: FormBuilder,
     private courseService: CourseService,
