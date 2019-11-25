@@ -101,11 +101,11 @@ export class AddCourseComponent implements OnInit {
     })
     console.log(course);
     this.courseService.addCourse(course).then(res => {
-      if (res.status != 202) {
+      if (res.status != 201) {
         alert("Something happened")
       }
       else {
-        this.router.navigateByUrl('/classes')
+        this.router.navigateByUrl('/courses')
       }
     })
   }
