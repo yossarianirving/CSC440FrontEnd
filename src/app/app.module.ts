@@ -32,7 +32,7 @@ import { from } from 'rxjs';
     HomeComponent,
     CourseListComponent,
     CourseInfoComponent,
-    AddCourseComponent
+    AddCourseComponent,
   ],
   imports: [
     BrowserModule,

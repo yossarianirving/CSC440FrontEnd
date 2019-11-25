@@ -24,7 +24,7 @@ export class CourseService {
     })
   }
 
-    addCourse(course: Course): Promise<Response> {
+  addCourse(course: Course): Promise<Response> {
     let url: string = 'http://localhost:8080/courses'
     // TODO: remove random id when server side is corrected
     let id = Math.floor(Math.random() * Math.floor(10000))

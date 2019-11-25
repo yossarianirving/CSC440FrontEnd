@@ -1,1 +1,32 @@
-<p>course-info works!</p>
+<table mat-table [dataSource]='assignments'>
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef> Title </th>
+    <td mat-cell *matCellDef="let assignment"> {{assignment.title}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="grade">
+    <th mat-header-cell *matHeaderCellDef> Grade </th>
+    <td mat-cell *matCellDef="let assignment"> {{assignment.grade}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="weight">
+    <th mat-header-cell *matHeaderCellDef> Weight </th>
+    <td mat-cell *matCellDef="let assignment"> {{assignment.weight}} </td>
+  </ng-container>
+
+  <!-- <ng-container matColumnDef="semesterTaken">
+    <th mat-header-cell *matHeaderCellDef> Semester </th>
+    <td mat-cell *matCellDef="let assignment"> {{assignment.semesterTaken}} </td>
+  </ng-container> -->
+
+  <ng-container matColumnDef="buttons">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let assignment"> <a [routerLink]="['/edit_assignment', assignment.id]" routerLinkActive="router-link-active" ><button mat-button>Edit</button></a></td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<button mat-button [routerLink]="['/add_assignment']" routerLinkActive="router-link-active" >Add Assignment</button>
