@@ -21,7 +21,11 @@
 
   <ng-container matColumnDef="buttons">
     <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef="let assignment"> <a [routerLink]="['/edit_assignment', assignment.id]" routerLinkActive="router-link-active" ><button mat-button>Edit</button></a></td>
+    <td mat-cell *matCellDef="let assignment"> 
+      <a [routerLink]="['/edit_assignment', assignment.id]" routerLinkActive="router-link-active" >
+        <button mat-button>Edit</button>
+      </a>
+    </td>
   </ng-container>
 
 

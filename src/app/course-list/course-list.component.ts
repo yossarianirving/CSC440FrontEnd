@@ -10,7 +10,7 @@ import { Course } from '../course'
 export class CourseListComponent implements OnInit {
 
   courses: Course[]
-  displayedColumns = ["title", "credits", "yearTaken", "semesterTaken", 'finalGrade']
+  displayedColumns = ["title", "credits", "yearTaken", "semesterTaken", 'finalGrade', 'buttons']
   constructor(
     private courseService: CourseService
   ) { }
