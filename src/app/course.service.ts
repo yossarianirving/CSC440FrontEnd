@@ -26,8 +26,6 @@ export class CourseService {
 
   addCourse(course: Course): Promise<Response> {
     let url: string = 'http://localhost:8080/courses'
-    // TODO: remove random id when server side is corrected
-    let id = Math.floor(Math.random() * Math.floor(10000))
     let body = {
       title: course.title,
       credits: course.credits,
@@ -35,7 +33,6 @@ export class CourseService {
       yearTaken: course.yearTaken,
       requirementSatisfaction: course.requirementSatisfaction,
       status: course.status,
-      id
     }
     return fetch(url, {
       method: 'POST',
