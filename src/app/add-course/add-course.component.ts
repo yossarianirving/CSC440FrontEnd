@@ -4,7 +4,7 @@ import { CourseService } from '../course.service';
 import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import {MatDatepicker} from '@angular/material/datepicker';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 
 import * as _moment from 'moment';
 // @ts-ignore
@@ -54,12 +54,15 @@ export class AddCourseComponent implements OnInit {
     "Upper Division",
     "Free Elective"
   ];
-  finalGradeOptions = ['', 'A', 'B', 'C', 'D', 'F', 'I']
+  finalGradeOptions = ['', 'A', 'B', 'C', 'D', 'F', 'I'];
+  courseID: string; // Needed if this is for editing the assignment
   constructor(
     private formBuilder: FormBuilder,
     private courseService: CourseService,
     private router: Router,
-  ) { 
+    private route: ActivatedRoute,
+  ) {
+    this.courseID = this.route.snapshot.queryParamMap.get('courseID');
     this.newClassForm = this.formBuilder.group({
       title: '',
       credits: '',
@@ -68,7 +71,27 @@ export class AddCourseComponent implements OnInit {
       finalGrade: '',
       requirementSatisfaction: '',
       status: ''
-    })
+    });
+    if (this.courseID) {
+      this.courseService.getCourseById(this.courseID).then(course => {
+        let keys = Object.keys(course);
+        console.log(keys);
+        
+        keys.forEach(key => {
+          if (key === 'id') {
+            // do nothing
+          }
+          else if (key === 'yearTaken') {
+            let yearControl = this.newClassForm.controls[key];
+            yearControl.value.set('year', course[key]);
+            yearControl.setValue(yearControl.value) // this is needed to set the value on the form
+          }
+          else {
+            this.newClassForm.controls[key].setValue(course[key]);
+          }
+        })
+      })
+    }
   }
 
   ngOnInit() {
@@ -100,12 +123,25 @@ export class AddCourseComponent implements OnInit {
       status
     })
     console.log(course);
-    this.courseService.addCourse(course).then(res => {
-      if (res.status != 201) {
+    let response: Promise<Response>;
+    // if modifying course
+    if (this.courseID) {
+      course.id = Number.parseInt(this.courseID);
+      response = this.courseService.modifyCourse(course)
+    }
+    else {
+      response = this.courseService.addCourse(course)
+    }
+    response.then(res => {
+      if (res.status != 201 && res.status != 200) {
         alert("Something happened")
       }
       else {
-        this.router.navigateByUrl('/courses')
+        if (this.courseID) 
+          this.router.navigateByUrl('/course/'+this.courseID)
+        
+        else 
+          this.router.navigateByUrl('/courses')
       }
     })
   }

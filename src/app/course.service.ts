@@ -32,6 +32,7 @@ export class CourseService {
     let course: Course;
     if (response.status == 200) {
       course = await response.json()
+      course = course[0]; // TODO fix this once server responds back with just the object
     }
     return new Promise((resolve, reject) => {
       if (course) {
@@ -52,6 +53,7 @@ export class CourseService {
       yearTaken: course.yearTaken,
       requirementSatisfaction: course.requirementSatisfaction,
       status: course.status,
+      finalGrade: course.finalGrade,
     }
     return fetch(url, {
       method: 'POST',
@@ -71,6 +73,7 @@ export class CourseService {
       yearTaken: course.yearTaken,
       requirementSatisfaction: course.requirementSatisfaction,
       status: course.status,
+      finalGrade: course.finalGrade,
     }
     return fetch(url, {
       method: 'PATCH',
