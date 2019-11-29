@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Assignment } from '../assignment';
 import { AssignmentService } from '../assignment.service';
+import { regExValidation } from '../form-validation.directive'
 
 @Component({
   selector: 'app-add-assignment',
@@ -28,11 +29,12 @@ export class AddAssignmentComponent implements OnInit {
         })
       })
     }
+    const decimalRegex = /\d+(\.\d+)?$/
     this.newAssignmentForm = this.formBuilder.group({
-      courseID: 0,
-      title: '',
-      weight: 0,
-      grade: 0
+      courseID: [0, Validators.required],
+      title: ['', Validators.required],
+      weight: ['', [Validators.required, regExValidation(decimalRegex, 'weightNotNumber')]],
+      grade: ['', [Validators.required, regExValidation(decimalRegex, 'gradeNotNumber')]]
     });
     this.route.queryParamMap.subscribe(v => {
       this.courseID = v['params']['courseID'];

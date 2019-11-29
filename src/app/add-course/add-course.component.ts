@@ -10,6 +10,7 @@ import * as _moment from 'moment';
 // @ts-ignore
 import {default as _rollupMoment, Moment} from 'moment';
 import { Course } from '../course';
+import { regExValidation } from '../form-validation.directive'
 const moment = _rollupMoment || _moment;
 export const MY_FORMATS = {
   parse: {
@@ -64,13 +65,13 @@ export class AddCourseComponent implements OnInit {
   ) {
     this.courseID = this.route.snapshot.queryParamMap.get('courseID');
     this.newClassForm = this.formBuilder.group({
-      title: '',
-      credits: '',
-      semesterTaken: '',
+      title: ['', [Validators.required, regExValidation(/^[A-Z]{3}[0-9]{3}.?$/, 'titleNotValid')]],
+      credits: ['', [Validators.required, regExValidation(/^\d$/, 'creditsNotValid')]],
+      semesterTaken: ['', Validators.required],
       yearTaken: moment(),
       finalGrade: '',
-      requirementSatisfaction: '',
-      status: ''
+      requirementSatisfaction: ['', Validators.required],
+      status: ['', Validators.required]
     });
     if (this.courseID) {
       this.courseService.getCourseById(this.courseID).then(course => {
@@ -90,6 +91,10 @@ export class AddCourseComponent implements OnInit {
             this.newClassForm.controls[key].setValue(course[key]);
           }
         })
+
+        this.newClassForm.markAsPristine()
+        console.log(this.newClassForm.dirty);
+        
       })
     }
   }

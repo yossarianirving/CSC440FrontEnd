@@ -26,6 +26,7 @@ import { CourseInfoComponent } from './course-info/course-info.component';
 import { AddCourseComponent } from './add-course/add-course.component'
 import { from } from 'rxjs';
 import { AddAssignmentComponent } from './add-assignment/add-assignment.component';
+import { FormValidationDirective } from './form-validation.directive';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { AddAssignmentComponent } from './add-assignment/add-assignment.componen
     CourseInfoComponent,
     AddCourseComponent,
     AddAssignmentComponent,
+    FormValidationDirective,
   ],
   imports: [
     BrowserModule,
