@@ -23,6 +23,22 @@ export class AssignmentService {
         rej("Status not 200")
       }
     })
-    
+  }
+
+  async addAssignment(newAssignment: Assignment): Promise<Response> {
+    let url = 'http://localhost:8080/assignments';
+    let body = {
+      title: newAssignment.title,
+      weight: newAssignment.weight,
+      grade: newAssignment.grade,
+      course_id: newAssignment.course_id
+    }
+    return fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    })
   }
 }

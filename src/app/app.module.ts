@@ -25,6 +25,7 @@ import { CourseListComponent } from './course-list/course-list.component';
 import { CourseInfoComponent } from './course-info/course-info.component';
 import { AddCourseComponent } from './add-course/add-course.component'
 import { from } from 'rxjs';
+import { AddAssignmentComponent } from './add-assignment/add-assignment.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { from } from 'rxjs';
     CourseListComponent,
     CourseInfoComponent,
     AddCourseComponent,
+    AddAssignmentComponent,
   ],
   imports: [
     BrowserModule,
