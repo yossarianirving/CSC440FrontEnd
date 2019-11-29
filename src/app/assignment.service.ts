@@ -31,10 +31,29 @@ export class AssignmentService {
       title: newAssignment.title,
       weight: newAssignment.weight,
       grade: newAssignment.grade,
-      course_id: newAssignment.course_id
+      courseID: newAssignment.courseID
     }
     return fetch(url, {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    })
+  }
+
+  async modifyAssignment(assignment: Assignment): Promise<Response> {
+
+    let url = 'http://localhost:8080/assignments/'+ assignment.courseID;
+    
+    let body = {
+      title: assignment.title,
+      weight: assignment.weight,
+      grade: assignment.grade,
+    }
+
+    return fetch(url, {
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
       },

@@ -33,4 +33,8 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 
-<button mat-button [routerLink]="['/add_assignment']" routerLinkActive="router-link-active" >Add Assignment</button>
+<button mat-button [routerLink]="['/add_assignment']" [queryParams]="{courseID: courseID}" routerLinkActive="router-link-active" >Add Assignment</button>
+
+<br>
+
+<button mat-button *ngIf="course" [routerLink]="['/add_course']" [queryParams]="{courseID: courseID}" routerLinkActive="router-link-active">Edit Course</button>

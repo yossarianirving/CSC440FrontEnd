@@ -6,6 +6,8 @@ import { Course } from './course'
 })
 export class CourseService {
 
+  courseToEdit: Course;
+
   constructor() { }
 
   async getCourses(status: string): Promise<Array<Course>> {
@@ -24,6 +26,23 @@ export class CourseService {
     })
   }
 
+  async getCourseById(id: string): Promise<Course> {
+    let url: string = 'http://localhost:8080/courses/'+id;
+    let response = await fetch(url);
+    let course: Course;
+    if (response.status == 200) {
+      course = await response.json()
+    }
+    return new Promise((resolve, reject) => {
+      if (course) {
+        resolve(course)
+      }
+      else {
+        reject(response)
+      }
+    })
+  }
+
   addCourse(course: Course): Promise<Response> {
     let url: string = 'http://localhost:8080/courses'
     let body = {
@@ -36,6 +55,25 @@ export class CourseService {
     }
     return fetch(url, {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    })
+  }
+
+  modifyCourse(course: Course): Promise<Response> {
+    let url: string = 'http://localhost:8080/courses/'+course.id;
+    let body = {
+      title: course.title,
+      credits: course.credits,
+      semesterTaken: course.semesterTaken,
+      yearTaken: course.yearTaken,
+      requirementSatisfaction: course.requirementSatisfaction,
+      status: course.status,
+    }
+    return fetch(url, {
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
       },

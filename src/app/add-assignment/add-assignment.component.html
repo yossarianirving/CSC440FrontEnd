@@ -1,1 +1,15 @@
-<p>add-assignment works!</p>
+<form [formGroup]="newAssignmentForm" (ngSubmit)='onSubmit()'>
+  <mat-form-field>
+    <input matInput placeholder="Title" id="title" name="title" formControlName="title">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput type="text" placeholder="Weight" id="weight" name="weight" formControlName="weight">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput type="text" placeholder="Grade" id="grade" name="grade" formControlName="grade">
+  </mat-form-field>
+  <br>
+  <button mat-button color="primary" type="submit">Submit</button>
+</form>
