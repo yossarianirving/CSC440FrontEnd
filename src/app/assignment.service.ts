@@ -60,4 +60,21 @@ export class AssignmentService {
       body: JSON.stringify(body)
     })
   }
+
+  async getAssignmentById(assignment_id: string): Promise<Assignment> {
+    let url = 'http://localhost:8080/assignments/' + assignment_id;
+    let response = await fetch(url);
+    let assignment: Assignment;
+    if (response.status == 200) {
+      assignment = await response.json();
+    }
+    return new Promise((res, rej) => {
+      if (response.status == 200) {
+        res(assignment)
+      }
+      else {
+        rej(response.status)
+      }
+    })
+  }
 }

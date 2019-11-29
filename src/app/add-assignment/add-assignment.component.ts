@@ -12,12 +12,22 @@ import { AssignmentService } from '../assignment.service';
 export class AddAssignmentComponent implements OnInit {
   courseID;
   newAssignmentForm;
+  assignment_id;
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private assignmentService: AssignmentService,
     private router: Router,
-  ) { 
+  ) {
+    this.assignment_id = this.route.snapshot.queryParamMap.get("assignment_id");
+    if (this.assignment_id) {
+      this.assignmentService.getAssignmentById(this.assignment_id).then(assignment => {
+        let keys = Object.keys(assignment);
+        keys.forEach(key => {
+          this.newAssignmentForm.controls[key].value = assignment[key];
+        })
+      })
+    }
     this.newAssignmentForm = this.formBuilder.group({
       courseID: 0,
       title: '',
