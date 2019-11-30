@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsModule, FormControl, FormGroup }   from '@angular/forms';
+import { Requirements } from '../requirements';
+import { RequirementsService } from '../requirements.service';
 
 @Component({
   selector: 'app-view-progress',
@@ -7,18 +10,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewProgressComponent implements OnInit {
 
-  
-
-  concentrations: ["General",
-   "Digital Forensics and Cybersecurity",
-   "Computer Technology",
-   "Interactive Multimedia",
-   "Artificial Intelligence in data Science",
-   "Statistical Computing",
+  concenGroup: FormGroup;
+  requirements: Requirements;
+  concentrations = [
+    "General",
+    "Digital Forensics and Cybersecurity",
+    "Computer Technology",
+    "Interactive Multimedia",
+    "Artificial Intelligence in data Science",
+    "Statistical Computing",
   ]
-  constructor() { }
+  constructor(
+    private requirementsService: RequirementsService,
+  ) {
+    this.concenGroup = new FormGroup({
+      concentration: new FormControl('')
+    })
+  }
 
   ngOnInit() {
+  }
+
+  onSubmit() {
+    this.concenGroup.markAsPristine();
+    let concentration: string = this.concenGroup.controls['concentration'].value;
+    this.requirementsService.getProgress(concentration).then(req => {
+      this.requirements = req
+    }).catch(e => {
+      console.log('Error');
+      
+    })
   }
 
 }

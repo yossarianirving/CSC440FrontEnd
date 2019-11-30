@@ -5,6 +5,7 @@ import { CourseListComponent } from './course-list/course-list.component';
 import { CourseInfoComponent } from './course-info/course-info.component'
 import { AddCourseComponent } from './add-course/add-course.component';
 import { AddAssignmentComponent } from './add-assignment/add-assignment.component';
+import { ViewProgressComponent } from './view-progress/view-progress.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'course/:courseId', component: CourseInfoComponent },
   { path: 'add_course', component: AddCourseComponent },
   { path: 'add_assignment', component: AddAssignmentComponent},
+  { path: 'view_progress', component: ViewProgressComponent },
 ];
 
 @NgModule({
