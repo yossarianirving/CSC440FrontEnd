@@ -43,3 +43,5 @@
   <br>
   <button mat-button color="primary" [disabled]="!newClassForm.valid || !newClassForm.dirty" type="submit">Submit</button>
 </form>
+<br><br>
+<button mat-button color="warn" (click)="deleteCourse()" *ngIf="courseID">Delete Class</button>

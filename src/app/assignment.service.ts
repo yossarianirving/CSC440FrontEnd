@@ -81,4 +81,11 @@ export class AssignmentService {
       }
     })
   }
+
+  deleteAssignment(assignment_id: string): Promise<Response> {
+    let url = 'http://localhost:8080/assignments/' + assignment_id;
+    return fetch(url, {
+      method: 'DELETE'
+    })
+  }
 }

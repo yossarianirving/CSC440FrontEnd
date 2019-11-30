@@ -84,4 +84,11 @@ export class CourseService {
     })
   }
 
+  deleteCourse(courseID: string): Promise<Response> {
+    let url: string = 'http://localhost:8080/courses/' + courseID;
+    return fetch(url, {
+      method: 'DELETE'
+    })
+  }
+
 }

@@ -151,4 +151,19 @@ export class AddCourseComponent implements OnInit {
     })
   }
 
+  deleteCourse() {
+    if (this.courseID) {
+      if (window.confirm("Are you sure you want to delete this course?")) {
+        this.courseService.deleteCourse(this.courseID).then(res =>{
+          if (res.status === 200) {
+            this.router.navigateByUrl('/courses')
+          }
+          else {
+            alert("There was an issue with deleting this course, try again later")
+          }
+        })
+      }
+    }
+  }
+
 }
