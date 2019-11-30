@@ -44,12 +44,13 @@ export class AssignmentService {
 
   async modifyAssignment(assignment: Assignment): Promise<Response> {
 
-    let url = 'http://localhost:8080/assignments/'+ assignment.courseID;
+    let url = 'http://localhost:8080/assignments/'+ assignment.id;
     
     let body = {
       title: assignment.title,
       weight: assignment.weight,
       grade: assignment.grade,
+      courseID: assignment.courseID,
     }
 
     return fetch(url, {
@@ -67,6 +68,9 @@ export class AssignmentService {
     let assignment: Assignment;
     if (response.status == 200) {
       assignment = await response.json();
+      assignment = assignment[0] // remove once server is corrected
+      console.log(assignment);
+      
     }
     return new Promise((res, rej) => {
       if (response.status == 200) {

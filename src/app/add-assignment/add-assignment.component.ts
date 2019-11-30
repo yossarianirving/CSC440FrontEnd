@@ -25,7 +25,9 @@ export class AddAssignmentComponent implements OnInit {
       this.assignmentService.getAssignmentById(this.assignment_id).then(assignment => {
         let keys = Object.keys(assignment);
         keys.forEach(key => {
-          this.newAssignmentForm.controls[key].value = assignment[key];
+          if ( key === 'id') {} // do nothing
+          else
+            this.newAssignmentForm.controls[key].setValue(assignment[key]);
         })
       })
     }
@@ -49,8 +51,17 @@ export class AddAssignmentComponent implements OnInit {
   onSubmit() {
     let newAssignment = new Assignment(this.newAssignmentForm.value)
     console.log(newAssignment);
-    this.assignmentService.addAssignment(newAssignment).then(res => {
-      if (res.status == 201) {
+    let response: Promise<Response>;
+    // if modifying an assignment
+    if (this.assignment_id) {
+      newAssignment.id = this.assignment_id;
+      response = this.assignmentService.modifyAssignment(newAssignment);
+    }
+    else {
+      response = this.assignmentService.addAssignment(newAssignment);
+    }
+    response.then(res => {
+      if (res.status == 201 || res.status == 200) {
         this.router.navigateByUrl('/course/'+this.courseID)
       }
       else {
