@@ -13,3 +13,5 @@
   <br>
   <button mat-button color="primary" [disabled]="!newAssignmentForm.valid || !newAssignmentForm.dirty" type="submit">Submit</button>
 </form>
+<br><br>
+<button mat-button color="warn" *ngIf="assignment_id" (click)="deleteAssignment()">Delete Assignment</button>

@@ -70,4 +70,19 @@ export class AddAssignmentComponent implements OnInit {
     })
   }
 
+  deleteAssignment() {    
+    if (this.assignment_id) {
+      if (window.confirm("Are you sure you want to delete this assignment?")) {
+        this.assignmentService.deleteAssignment(this.assignment_id).then(res => {
+          if (res.status === 200) {
+            this.router.navigateByUrl('/course/'+this.courseID);
+          }
+          else {
+            alert("Assignment deletion failed")
+          }
+        })
+      }
+    }
+  }
+
 }
