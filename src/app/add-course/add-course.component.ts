@@ -106,6 +106,7 @@ export class AddCourseComponent implements OnInit {
     const ctrlValue = this.newClassForm.controls.yearTaken.value;
     ctrlValue.year(normlizedMonth.year());
     this.newClassForm.controls.yearTaken.setValue(ctrlValue);
+    this.newClassForm.markAsDirty();
     datepicker.close();
   }
 
