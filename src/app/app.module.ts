@@ -28,6 +28,7 @@ import { from } from 'rxjs';
 import { AddAssignmentComponent } from './add-assignment/add-assignment.component';
 import { FormValidationDirective } from './form-validation.directive';
 import { ViewProgressComponent } from './view-progress/view-progress.component';
+import { WhatIfComponent } from './what-if/what-if.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ViewProgressComponent } from './view-progress/view-progress.component';
     AddAssignmentComponent,
     FormValidationDirective,
     ViewProgressComponent,
+    WhatIfComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +60,9 @@ import { ViewProgressComponent } from './view-progress/view-progress.component';
     MatButtonModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    WhatIfComponent
+  ]
 })
 export class AppModule { }

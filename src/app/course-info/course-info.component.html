@@ -38,3 +38,9 @@
 <br>
 
 <button mat-button *ngIf="course" [routerLink]="['/add_course']" [queryParams]="{courseID: courseID}" routerLinkActive="router-link-active">Edit Course</button>
+
+<br>
+
+<h3 *ngIf="currentGrade">Current Grade: {{ currentGrade | number:'1.0-2' }}</h3>
+
+<button *ngIf="currentGrade" mat-button (click)="whatIfDialog()">What if Grade Calculation</button>

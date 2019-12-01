@@ -1,0 +1,11 @@
+<label for="remaining">Grade on remaining coursework</label>
+<input name="remaining" type="text" pattern="\d+(\.\d+)?$" [(ngModel)]="remaining" style="width: 50px">
+<br>
+<label for="toGet">Desired grade</label>
+<input name="toGet" type="text" pattern="\d+(\.\d+)?$" [(ngModel)]="toGet" style="width: 50px">
+<br>
+<button (click)="calculate()" mat-button>Calculate</button>
+<br>
+<p *ngIf="afterRemaining">If you make {{remaining}}% on remaining coursework, you'll get {{ afterRemaining | number:'1.0-2'}} overall</p>
+<br>
+<p *ngIf="need">In order to get {{toGet}}% overall, you'll need {{ need | number:'1.0-2' }}% on remaining coursework</p>
