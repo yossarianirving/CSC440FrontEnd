@@ -2,25 +2,21 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.19.
 
+## Dependencies
+
+Before you can build this project, you'll need to have [Node/NPM](https://nodejs.org/en/), and [Angular CLI](https://github.com/angular/angular-cli) installed.
+
+Run `npm install` to get all the development packages.
+
 ## Development server
 
+Before running the development server, make sure to have [The backend server](https://github.com/yossarianirving/CSC440Server/tree/ethan) installed.
+
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
 ## Further help
 
