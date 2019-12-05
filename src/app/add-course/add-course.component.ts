@@ -65,7 +65,7 @@ export class AddCourseComponent implements OnInit {
   ) {
     this.courseID = this.route.snapshot.queryParamMap.get('courseID');
     this.newClassForm = this.formBuilder.group({
-      title: ['', [Validators.required, regExValidation(/^[A-Z]{3}[0-9]{3}.?$/, 'titleNotValid')]],
+      title: ['', [Validators.required, regExValidation(/^[A-Z]{3}[0-9]{3}[A-Z]?$/, 'titleNotValid')]],
       credits: ['', [Validators.required, regExValidation(/^\d$/, 'creditsNotValid')]],
       semesterTaken: ['', Validators.required],
       yearTaken: moment(),

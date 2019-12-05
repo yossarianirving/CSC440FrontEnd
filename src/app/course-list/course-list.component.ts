@@ -16,7 +16,10 @@ export class CourseListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.courseService.getCourses('in_progress').then(courses => {
+    const urlParams = new URLSearchParams(window.location.search);
+    let status = urlParams.get('status');
+    status = status ? status : 'in_progress'
+    this.courseService.getCourses(status).then(courses => {
       this.courses = courses  
     })
   }
