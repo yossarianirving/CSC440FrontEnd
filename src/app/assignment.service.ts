@@ -68,7 +68,6 @@ export class AssignmentService {
     let assignment: Assignment;
     if (response.status == 200) {
       assignment = await response.json();
-      assignment = assignment[0] // remove once server is corrected
       console.log(assignment);
       
     }

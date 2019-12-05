@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule, FormControl, FormGroup }   from '@angular/forms';
 import { Requirements } from '../requirements';
 import { RequirementsService } from '../requirements.service';
+import { Course } from '../course';
+import { CourseService } from '../course.service';
 
 @Component({
   selector: 'app-view-progress',
@@ -9,7 +11,7 @@ import { RequirementsService } from '../requirements.service';
   styleUrls: ['./view-progress.component.css']
 })
 export class ViewProgressComponent implements OnInit {
-
+  gpa: number;
   concenGroup: FormGroup;
   requirements: Requirements;
   concentrations = [
@@ -22,10 +24,12 @@ export class ViewProgressComponent implements OnInit {
   ]
   constructor(
     private requirementsService: RequirementsService,
+    private courseService: CourseService,
   ) {
     this.concenGroup = new FormGroup({
       concentration: new FormControl('')
-    })
+    });
+    this.courseService.calculateGpa().then(res => { this.gpa = res})
   }
 
   ngOnInit() {

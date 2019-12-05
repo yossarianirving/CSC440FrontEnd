@@ -1,3 +1,7 @@
+<h3 *ngIf="gpa">
+  GPA: {{ gpa | number:'1.0-2' }}
+</h3>
+
 <form [formGroup]="concenGroup" (ngSubmit)="onSubmit()">
   <mat-form-field>
     <mat-select formControlName="concentration" name="concentration">
